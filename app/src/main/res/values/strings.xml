@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Project Individual</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open">drawer</string>
+    <string name="close">drawer</string>
+</resources>

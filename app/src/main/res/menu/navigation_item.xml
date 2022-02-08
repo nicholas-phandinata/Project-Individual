@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_instruktur"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Instruktur" />
+
+        <item
+            android:id="@+id/nav_materi"
+            android:icon="@android:drawable/ic_dialog_email"
+            android:title="Materi" />
+
+        <item
+            android:id="@+id/nav_peserta"
+            android:icon="@android:drawable/ic_menu_call"
+            android:title="Peserta" />
+
+        <item
+            android:id="@+id/nav_kelas"
+            android:icon="@android:drawable/ic_menu_more"
+            android:title="Kelas" />
+
+        <item
+            android:id="@+id/nav_detail_kelas"
+            android:icon="@android:drawable/ic_menu_more"
+            android:title="Detail Kelas" />
+    </group>
+</menu>
