@@ -53,12 +53,16 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
         instrukturBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // membuka detail
+                Intent intent = new Intent(getActivity(), LihatDetailInstruktur.class);
+                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
+                String insId = map.get(Konfigurasi.TAG_JSON_INS_ID).toString();
+                intent.putExtra(Konfigurasi.INS_ID, insId);
+                startActivity(intent);
             }
         });
 
         // penanganan FAB
-        instrukturBinding.addFab.setOnClickListener(this);
+        instrukturBinding.btnTambahInstruktur.setOnClickListener(this);
 
         // ambil data dari JSON
         getJsonData();
