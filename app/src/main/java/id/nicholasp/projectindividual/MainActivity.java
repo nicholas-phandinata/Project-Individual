@@ -87,6 +87,26 @@ public class MainActivity extends AppCompatActivity {
                         binding.drawer.closeDrawer(GravityCompat.START);
                         callFragment(fragment);
                         break;
+                    case R.id.nav_materi:
+                        fragment = new MateriFragment();
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
+                    case R.id.nav_peserta:
+                        fragment = new PesertaFragment();
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
+                    case R.id.nav_kelas:
+                        fragment = new KelasFragment();
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
+                    case R.id.nav_detail_kelas:
+                        fragment = new DetailKelasFragment();
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
                 }
                 return true;
             }

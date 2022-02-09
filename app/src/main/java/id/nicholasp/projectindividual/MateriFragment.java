@@ -25,10 +25,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import id.nicholasp.projectindividual.databinding.FragmentInstrukturBinding;
+import id.nicholasp.projectindividual.databinding.FragmentMateriBinding;
 
-public class InstrukturFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener {
-    private FragmentInstrukturBinding instrukturBinding;
+public class MateriFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener {
+    private FragmentMateriBinding materiBinding;
     private View view;
     private String JSON_STRING;
     private ProgressDialog loading;
@@ -37,9 +37,9 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        instrukturBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_instruktur, container, false);
+        materiBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_materi, container, false);
         ((MainActivity) getActivity()).setOnBackPressedListener(this);
-        view = instrukturBinding.getRoot();
+        view = materiBinding.getRoot();
         initView();
         return view;
     }
@@ -47,22 +47,22 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
     private void initView() {
         // custom action bar
         ActionBar customActionBar = ((MainActivity) getActivity()).getSupportActionBar();
-        customActionBar.setTitle("Data Instruktur");
+        customActionBar.setTitle("Data Materi");
 
         // penanganan List View
-        instrukturBinding.listViewInstruktur.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        materiBinding.listViewMateri.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), LihatDetailInstruktur.class);
-                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
-                String insId = map.get(Konfigurasi.TAG_JSON_INS_ID).toString();
-                intent.putExtra(Konfigurasi.INS_ID, insId);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), LihatDetailInstruktur.class);
+//                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
+//                String insId = map.get(Konfigurasi.TAG_JSON_INS_ID).toString();
+//                intent.putExtra(Konfigurasi.INS_ID, insId);
+//                startActivity(intent);
             }
         });
 
         // penanganan FAB
-        instrukturBinding.btnTambahInstruktur.setOnClickListener(this);
+//        materiBinding.btnTambahInstruktur.setOnClickListener(this);
 
         // ambil data dari JSON
         getJsonData();
@@ -73,13 +73,13 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(view.getContext(), "Ambil Data Instruktur", "Harap menunggu...", false, false);
+                loading = ProgressDialog.show(view.getContext(), "Ambil Data Materi", "Harap menunggu...", false, false);
             }
 
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_GET_ALL_INS);
+                String result = handler.sendGetResponse(Konfigurasi.URL_GET_ALL_MAT);
                 return result;
             }
 
@@ -92,14 +92,14 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
                 // Toast.makeText(view.getContext(), JSON_STRING, Toast.LENGTH_LONG).show();
 
                 // menampilkan data json kedalam list view
-                displayAllDataInstruktur();
+                displayAllDataMateri();
             }
         }
         GetJsonData getJsonData = new GetJsonData();
         getJsonData.execute();
     }
 
-    private void displayAllDataInstruktur() {
+    private void displayAllDataMateri() {
         JSONObject jsonObject = null;
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
@@ -109,14 +109,14 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
-                String ins_id = object.getString(Konfigurasi.TAG_JSON_INS_ID);
-                String nama_ins = object.getString(Konfigurasi.TAG_JSON_INS_NAMA);
+                String mat_id = object.getString(Konfigurasi.TAG_JSON_MAT_ID);
+                String nama_mat = object.getString(Konfigurasi.TAG_JSON_MAT_NAMA);
 
-                HashMap<String, String> instruktur = new HashMap<>();
-                instruktur.put(Konfigurasi.TAG_JSON_INS_ID, ins_id);
-                instruktur.put(Konfigurasi.TAG_JSON_INS_NAMA, nama_ins);
+                HashMap<String, String> materi = new HashMap<>();
+                materi.put(Konfigurasi.TAG_JSON_MAT_ID, mat_id);
+                materi.put(Konfigurasi.TAG_JSON_MAT_NAMA, nama_mat);
 
-                list.add(instruktur);
+                list.add(materi);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -125,10 +125,10 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
         // adapter untuk meletakkan array list kedalam list view
         ListAdapter adapter = new SimpleAdapter(
                 view.getContext(), list, R.layout.list_item_layout,
-                new String[]{Konfigurasi.TAG_JSON_INS_ID, Konfigurasi.TAG_JSON_INS_NAMA},
+                new String[]{Konfigurasi.TAG_JSON_MAT_ID, Konfigurasi.TAG_JSON_MAT_NAMA},
                 new int[]{R.id.txt_id, R.id.txt_name}
         );
-        instrukturBinding.listViewInstruktur.setAdapter(adapter);
+        materiBinding.listViewMateri.setAdapter(adapter);
     }
 
     @Override
@@ -136,7 +136,7 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        transaction.replace(R.id.frameLayout, new InstrukturFragment());
+        transaction.replace(R.id.frameLayout, new MateriFragment());
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -144,6 +144,6 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
     @Override
     public void onClick(View v) {
         // penanganan FAB
-        startActivity(new Intent(view.getContext(), TambahDataInstruktur.class));
+//        startActivity(new Intent(view.getContext(), TambahDataInstruktur.class));
     }
 }

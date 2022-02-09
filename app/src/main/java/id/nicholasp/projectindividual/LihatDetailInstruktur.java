@@ -60,7 +60,7 @@ public class LihatDetailInstruktur extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //deleteNasabah();
+                                deleteInstruktur();
                             }
                         });
 
@@ -80,37 +80,36 @@ public class LihatDetailInstruktur extends AppCompatActivity {
         getJSON();
     }
 
-//    private void deleteNasabah() {
-//        class DeleteNasabah extends AsyncTask<Void, Void, String> {
-//            ProgressDialog loading;
-//
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//                loading = ProgressDialog.show(LihatDetailInstruktur.this,
-//                        "Deleting Data...", "Harap menunggu...",
-//                        false, false);
-//            }
-//
-//            @Override
-//            protected String doInBackground(Void... params) {
-//                HttpHandler handler = new HttpHandler();
-//                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_INS, id);
-//                return result;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(String message) {
-//                super.onPostExecute(message);
-//                loading.dismiss();
-//                displayDetailData(message);
-//            }
-//        }
-//        DeleteNasabah de = new DeleteNasabah();
-//        de.execute();
-//        startActivity(new Intent(LihatDetailInstruktur.this, InstrukturFragment.class));
-//    }
-//
+    private void deleteInstruktur() {
+        class DeleteInstruktur extends AsyncTask<Void, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(LihatDetailInstruktur.this,
+                        "Deleting Data...", "Harap menunggu...",
+                        false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_INS, id);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) {
+                super.onPostExecute(message);
+                loading.dismiss();
+                displayDetailData(message);
+            }
+        }
+        DeleteInstruktur de = new DeleteInstruktur();
+        de.execute();
+    }
+
     private void updateInstruktur() {
         final String nama_ins = edit_nama_ins.getText().toString().trim();
         final String email_ins = edit_email_ins.getText().toString().trim();

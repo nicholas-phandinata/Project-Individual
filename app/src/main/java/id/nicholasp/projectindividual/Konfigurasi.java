@@ -6,7 +6,31 @@ public class Konfigurasi {
     public static final String URL_GET_DETAIL_INS = "http://192.168.1.8/inixindo/instruktur/tr_detail_instruktur.php?id_ins=";
     public static final String URL_ADD_INS = "http://192.168.1.8/inixindo/instruktur/tr_add_instruktur.php";
     public static final String URL_UPDATE_INS = "http://192.168.1.8/inixindo/instruktur/tr_update_instruktur.php";
-    public static final String URL_DELETE_INS = "http://192.168.1.8/inixindo/instruktur/tr_delete_instruktur.php?id=";
+    public static final String URL_DELETE_INS = "http://192.168.1.8/inixindo/instruktur/tr_delete_instruktur.php?id_ins=";
+
+    public static final String URL_GET_ALL_MAT = "http://192.168.1.8/inixindo/materi/tr_datas_materi.php";
+    public static final String URL_GET_DETAIL_MAT = "http://192.168.1.8/inixindo/instruktur/tr_detail_instruktur.php?id_ins=";
+    public static final String URL_ADD_MAT = "http://192.168.1.8/inixindo/instruktur/tr_add_instruktur.php";
+    public static final String URL_UPDATE_MAT = "http://192.168.1.8/inixindo/instruktur/tr_update_instruktur.php";
+    public static final String URL_DELETE_MAT = "http://192.168.1.8/inixindo/instruktur/tr_delete_instruktur.php?id_ins=";
+
+    public static final String URL_GET_ALL_PST = "http://192.168.1.8/inixindo/peserta/tr_datas_peserta.php";
+    public static final String URL_GET_DETAIL_PST = "http://192.168.1.8/inixindo/instruktur/tr_detail_instruktur.php?id_ins=";
+    public static final String URL_ADD_PST = "http://192.168.1.8/inixindo/instruktur/tr_add_instruktur.php";
+    public static final String URL_UPDATE_PST = "http://192.168.1.8/inixindo/instruktur/tr_update_instruktur.php";
+    public static final String URL_DELETE_PST = "http://192.168.1.8/inixindo/instruktur/tr_delete_instruktur.php?id_ins=";
+
+    public static final String URL_GET_ALL_KLS = "http://192.168.1.8/inixindo/kelas/tr_datas_kelas.php";
+    public static final String URL_GET_DETAIL_KLS = "http://192.168.1.8/inixindo/instruktur/tr_detail_instruktur.php?id_ins=";
+    public static final String URL_ADD_KLS = "http://192.168.1.8/inixindo/instruktur/tr_add_instruktur.php";
+    public static final String URL_UPDATE_KLS = "http://192.168.1.8/inixindo/instruktur/tr_update_instruktur.php";
+    public static final String URL_DELETE_KLS = "http://192.168.1.8/inixindo/instruktur/tr_delete_instruktur.php?id_ins=";
+
+    public static final String URL_GET_ALL_DT_KLS = "http://192.168.1.8/inixindo/detail_kelas/tr_datas_detail_kelas.php";
+    public static final String URL_GET_DETAIL_DT_KLS = "http://192.168.1.8/inixindo/instruktur/tr_detail_instruktur.php?id_ins=";
+    public static final String URL_ADD_DT_KLS = "http://192.168.1.8/inixindo/instruktur/tr_add_instruktur.php";
+    public static final String URL_UPDATE_DT_KLS = "http://192.168.1.8/inixindo/instruktur/tr_update_instruktur.php";
+    public static final String URL_DELETE_DT_KLS = "http://192.168.1.8/inixindo/instruktur/tr_delete_instruktur.php?id_ins=";
 
     //key and value JSON yang muncul di browser
     public static final String KEY_INS_ID = "id_ins";
@@ -14,13 +38,53 @@ public class Konfigurasi {
     public static final String KEY_INS_EMAIL = "email_ins";
     public static final String KEY_INS_HP = "hp_ins";
 
+    public static final String KEY_MAT_ID = "id_mat";
+    public static final String KEY_MAT_NAMA = "nama_mat";
+
+    public static final String KEY_PST_ID = "id_pst";
+    public static final String KEY_PST_NAMA = "nama_pst";
+    public static final String KEY_PST_EMAIL = "email_pst";
+    public static final String KEY_PST_HP = "hp_pst";
+    public static final String KEY_PST_INSTANSI = "instansi_pst";
+
+    public static final String KEY_KLS_ID = "id_kls";
+    public static final String KEY_KLS_TGL_MULAI = "tgl_mulai_kls";
+    public static final String KEY_KLS_TGL_AKHIR = "tgl_akhir_kls";
+    public static final String KEY_KLS_INS = "ins_kls";
+    public static final String KEY_KLS_MAT = "mat_kls";
+
+    public static final String KEY_DT_KLS_ID_KLS = "id_kls";
+    public static final String KEY_DT_KLS_JUM = "jum_pst";
+
     // flag JSON
     public static final String TAG_JSON_ARRAY = "result";
+
     public static final String TAG_JSON_INS_ID = "id_ins";
     public static final String TAG_JSON_INS_NAMA = "nama_ins";
     public static final String TAG_JSON_INS_EMAIL = "email_ins";
     public static final String TAG_JSON_INS_HP = "hp_ins";
 
+    public static final String TAG_JSON_MAT_ID = "id_mat";
+    public static final String TAG_JSON_MAT_NAMA = "nama_mat";
+
+    public static final String TAG_JSON_PST_ID = "id_pst";
+    public static final String TAG_JSON_PST_NAMA = "nama_pst";
+    public static final String TAG_JSON_PST_EMAIL = "email_pst";
+    public static final String TAG_JSON_PST_HP = "hp_pst";
+    public static final String TAG_JSON_PST_INSTANSI = "instansi_pst";
+
+    public static final String TAG_JSON_KLS_ID = "id_kls";
+    public static final String TAG_JSON_KLS_TGL_MULAI = "tgl_mulai_kls";
+    public static final String TAG_JSON_KLS_TGL_AKHIR = "tgl_akhir_kls";
+    public static final String TAG_JSON_KLS_INS = "ins_pst";
+    public static final String TAG_JSON_KLS_MAT = "mat_pst";
+
+    public static final String TAG_JSON_DT_KLS_ID_KLS = "id_kls";
+    public static final String TAG_JSON_DT_KLS_JUM_PST = "jum_pst";
+
     //variable ID nasabah
     public static final String INS_ID = "id_ins";
+    public static final String MAT_ID = "id_mat";
+    public static final String PST_ID = "id_pst";
+    public static final String KLS_ID = "id_kls";
 }

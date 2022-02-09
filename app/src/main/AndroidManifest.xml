@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ProjectIndividual"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".TambahDataInstruktur"
+            android:exported="false" />
+        <activity
             android:name=".LihatDetailInstruktur"
             android:exported="false" />
         <activity
