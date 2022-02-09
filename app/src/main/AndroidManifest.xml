@@ -13,6 +13,27 @@
         android:theme="@style/Theme.ProjectIndividual"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".LihatDetailKelas"
+            android:exported="false" />
+        <activity
+            android:name=".TambahDataKelas"
+            android:exported="false" />
+        <activity
+            android:name=".LihatDetailPeserta"
+            android:exported="false" />
+        <activity
+            android:name=".TambahDataPeserta"
+            android:exported="false" />
+        <activity
+            android:name=".TambahDataMateri"
+            android:exported="false" />
+        <activity
+            android:name=".LihatDetailMateri"
+            android:exported="false" />
+        <activity
+            android:name=".LihatDetailDetailKelas"
+            android:exported="false" />
+        <activity
             android:name=".TambahDataInstruktur"
             android:exported="false" />
         <activity

@@ -19,48 +19,49 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class LihatDetailInstruktur extends AppCompatActivity {
-    EditText edit_id_ins, edit_nama_ins, edit_email_ins, edit_hp_ins;
+public class LihatDetailPeserta extends AppCompatActivity {
+    EditText edit_id_pst, edit_nama_pst, edit_email_pst, edit_hp_pst, edit_ins_pst;
     String id;
-    Button button_update;
-    Button button_delete;
+    Button button_update_peserta;
+    Button button_delete_peserta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lihat_detail_instruktur);
+        setContentView(R.layout.activity_lihat_detail_peserta);
 
-        edit_id_ins = findViewById(R.id.edit_id_ins);
-        edit_nama_ins = findViewById(R.id.edit_nama_ins);
-        edit_email_ins = findViewById(R.id.edit_email_ins);
-        edit_hp_ins = findViewById(R.id.edit_hp_ins);
+        edit_id_pst = findViewById(R.id.edit_id_pst);
+        edit_nama_pst = findViewById(R.id.edit_nama_pst);
+        edit_email_pst = findViewById(R.id.edit_email_pst);
+        edit_hp_pst = findViewById(R.id.edit_hp_pst);
+        edit_ins_pst = findViewById(R.id.edit_ins_pst);
 
         //menerima intent dari class
         Intent receiveIntent = getIntent();
-        id = receiveIntent.getStringExtra(Konfigurasi.INS_ID);
-        edit_id_ins.setText(id);
+        id = receiveIntent.getStringExtra(Konfigurasi.PST_ID);
+        edit_id_pst.setText(id);
 
         //button
-        button_update = findViewById(R.id.btn_update_instruktur);
-        button_delete = findViewById(R.id.btn_delete_instruktur);
+        button_update_peserta = findViewById(R.id.btn_update_peserta);
+        button_delete_peserta = findViewById(R.id.btn_delete_peserta);
 
-        button_update.setOnClickListener(new View.OnClickListener() {
+        button_update_peserta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateInstruktur();
+                updatePeserta();
             }
         });
-        button_delete.setOnClickListener(new View.OnClickListener() {
+        button_delete_peserta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailInstruktur.this);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailPeserta.this);
                 alertDialogBuilder.setMessage("Yakin Delete?");
 
                 alertDialogBuilder.setPositiveButton("Ya",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                deleteInstruktur();
+                                deletePeserta();
                             }
                         });
 
@@ -80,14 +81,14 @@ public class LihatDetailInstruktur extends AppCompatActivity {
         getJSON();
     }
 
-    private void deleteInstruktur() {
-        class DeleteInstruktur extends AsyncTask<Void, Void, String> {
+    private void deletePeserta() {
+        class DeletePeserta extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(LihatDetailInstruktur.this,
+                loading = ProgressDialog.show(LihatDetailPeserta.this,
                         "Deleting Data...", "Harap menunggu...",
                         false, false);
             }
@@ -95,7 +96,7 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_INS, id);
+                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_PST, id);
                 return result;
             }
 
@@ -106,22 +107,23 @@ public class LihatDetailInstruktur extends AppCompatActivity {
                 displayDetailData(message);
             }
         }
-        DeleteInstruktur de = new DeleteInstruktur();
-        de.execute();
+        DeletePeserta dp = new DeletePeserta();
+        dp.execute();
     }
 
-    private void updateInstruktur() {
-        final String nama_ins = edit_nama_ins.getText().toString().trim();
-        final String email_ins = edit_email_ins.getText().toString().trim();
-        final String hp_ins = edit_hp_ins.getText().toString().trim();
+    private void updatePeserta() {
+        final String nama_pst = edit_nama_pst.getText().toString().trim();
+        final String email_pst = edit_email_pst.getText().toString().trim();
+        final String hp_pst = edit_hp_pst.getText().toString().trim();
+        final String ins_pst = edit_ins_pst.getText().toString().trim();
 
-        class UpdateInstruktur extends AsyncTask<Void, Void, String> {
+        class UpdatePeserta extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(LihatDetailInstruktur.this,
+                loading = ProgressDialog.show(LihatDetailPeserta.this,
                         "Updating Data...", "Harap menunggu...",
                         false, false);
             }
@@ -129,13 +131,14 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put(Konfigurasi.KEY_INS_ID, id);
-                hashMap.put(Konfigurasi.KEY_INS_NAMA, nama_ins);
-                hashMap.put(Konfigurasi.KEY_INS_EMAIL, email_ins);
-                hashMap.put(Konfigurasi.KEY_INS_HP, hp_ins);
+                hashMap.put(Konfigurasi.KEY_PST_ID, id);
+                hashMap.put(Konfigurasi.KEY_PST_NAMA, nama_pst);
+                hashMap.put(Konfigurasi.KEY_PST_EMAIL, email_pst);
+                hashMap.put(Konfigurasi.KEY_PST_HP, hp_pst);
+                hashMap.put(Konfigurasi.KEY_PST_INSTANSI, ins_pst);
 
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendPostRequest(Konfigurasi.URL_UPDATE_INS, hashMap);
+                String result = handler.sendPostRequest(Konfigurasi.URL_UPDATE_PST, hashMap);
                 return result;
             }
 
@@ -147,10 +150,10 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             }
         }
 
-        UpdateInstruktur ue = new UpdateInstruktur();
-        ue.execute();
+        UpdatePeserta up = new UpdatePeserta();
+        up.execute();
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailInstruktur.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailPeserta.this);
         alertDialogBuilder.setMessage("Update lagi?");
 
         alertDialogBuilder.setPositiveButton("Ya",
@@ -179,7 +182,7 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(LihatDetailInstruktur.this,
+                loading = ProgressDialog.show(LihatDetailPeserta.this,
                         "Mengambil Data", "Harap menunggu...",
                         false, false);
             }
@@ -187,7 +190,7 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_GET_DETAIL_INS, id);
+                String result = handler.sendGetResponse(Konfigurasi.URL_GET_DETAIL_PST, id);
                 return result;
             }
 
@@ -208,13 +211,17 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             JSONArray result = jsonObject.getJSONArray(Konfigurasi.TAG_JSON_ARRAY);
             JSONObject object = result.getJSONObject(0);
 
-            String nama_ins = object.getString(Konfigurasi.TAG_JSON_INS_NAMA);
-            String email_ins = object.getString(Konfigurasi.TAG_JSON_INS_EMAIL);
-            String hp_ins = object.getString(Konfigurasi.TAG_JSON_INS_HP);
+            String id_pst = object.getString(Konfigurasi.TAG_JSON_PST_ID);
+            String nama_pst = object.getString(Konfigurasi.TAG_JSON_PST_NAMA);
+            String email_pst = object.getString(Konfigurasi.TAG_JSON_PST_EMAIL);
+            String hp_pst = object.getString(Konfigurasi.TAG_JSON_PST_HP);
+            String ins_pst = object.getString(Konfigurasi.TAG_JSON_PST_INSTANSI);
 
-            edit_nama_ins.setText(nama_ins);
-            edit_email_ins.setText(email_ins);
-            edit_hp_ins.setText(hp_ins);
+            edit_id_pst.setText(id_pst);
+            edit_nama_pst.setText(nama_pst);
+            edit_email_pst.setText(email_pst);
+            edit_hp_pst.setText(hp_pst);
+            edit_ins_pst.setText(ins_pst);
 
         } catch (Exception ex) {
             ex.printStackTrace();

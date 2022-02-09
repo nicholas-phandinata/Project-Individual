@@ -4,9 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/drawable/item_background_nav_checked.xml" value="0.1265" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_lihat_detail_detail_kelas.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_lihat_detail_instruktur.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_lihat_detail_kelas.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_lihat_detail_materi.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_lihat_detail_peserta.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_main.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_tambah_data_instruktur.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_tambah_data_kelas.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_tambah_data_materi.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/activity_tambah_data_peserta.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/fragment_detail_kelas.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/fragment_instruktur.xml" value="0.264" />
         <entry key="..\:/Users/JAVARENT/AndroidStudioProjects/Android Maybank/ProjectIndividual/app/src/main/res/layout/fragment_kelas.xml" value="0.27447916666666666" />

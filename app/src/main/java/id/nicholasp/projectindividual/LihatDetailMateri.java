@@ -19,48 +19,46 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class LihatDetailInstruktur extends AppCompatActivity {
-    EditText edit_id_ins, edit_nama_ins, edit_email_ins, edit_hp_ins;
+public class LihatDetailMateri extends AppCompatActivity {
+    EditText edit_id_mat, edit_nama_mat;
     String id;
-    Button button_update;
-    Button button_delete;
+    Button button_update_materi;
+    Button button_delete_materi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lihat_detail_instruktur);
+        setContentView(R.layout.activity_lihat_detail_materi);
 
-        edit_id_ins = findViewById(R.id.edit_id_ins);
-        edit_nama_ins = findViewById(R.id.edit_nama_ins);
-        edit_email_ins = findViewById(R.id.edit_email_ins);
-        edit_hp_ins = findViewById(R.id.edit_hp_ins);
+        edit_id_mat = findViewById(R.id.edit_id_mat);
+        edit_nama_mat = findViewById(R.id.edit_nama_mat);
 
         //menerima intent dari class
         Intent receiveIntent = getIntent();
-        id = receiveIntent.getStringExtra(Konfigurasi.INS_ID);
-        edit_id_ins.setText(id);
+        id = receiveIntent.getStringExtra(Konfigurasi.MAT_ID);
+        edit_id_mat.setText(id);
 
         //button
-        button_update = findViewById(R.id.btn_update_instruktur);
-        button_delete = findViewById(R.id.btn_delete_instruktur);
+        button_update_materi = findViewById(R.id.btn_update_materi);
+        button_delete_materi = findViewById(R.id.btn_delete_materi);
 
-        button_update.setOnClickListener(new View.OnClickListener() {
+        button_update_materi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateInstruktur();
+                updateMateri();
             }
         });
-        button_delete.setOnClickListener(new View.OnClickListener() {
+        button_delete_materi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailInstruktur.this);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailMateri.this);
                 alertDialogBuilder.setMessage("Yakin Delete?");
 
                 alertDialogBuilder.setPositiveButton("Ya",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                deleteInstruktur();
+                                deleteMateri();
                             }
                         });
 
@@ -80,14 +78,14 @@ public class LihatDetailInstruktur extends AppCompatActivity {
         getJSON();
     }
 
-    private void deleteInstruktur() {
-        class DeleteInstruktur extends AsyncTask<Void, Void, String> {
+    private void deleteMateri() {
+        class DeleteMateri extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(LihatDetailInstruktur.this,
+                loading = ProgressDialog.show(LihatDetailMateri.this,
                         "Deleting Data...", "Harap menunggu...",
                         false, false);
             }
@@ -95,7 +93,7 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_INS, id);
+                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_MAT, id);
                 return result;
             }
 
@@ -106,22 +104,20 @@ public class LihatDetailInstruktur extends AppCompatActivity {
                 displayDetailData(message);
             }
         }
-        DeleteInstruktur de = new DeleteInstruktur();
-        de.execute();
+        DeleteMateri dm = new DeleteMateri();
+        dm.execute();
     }
 
-    private void updateInstruktur() {
-        final String nama_ins = edit_nama_ins.getText().toString().trim();
-        final String email_ins = edit_email_ins.getText().toString().trim();
-        final String hp_ins = edit_hp_ins.getText().toString().trim();
+    private void updateMateri() {
+        final String materi = edit_nama_mat.getText().toString().trim();
 
-        class UpdateInstruktur extends AsyncTask<Void, Void, String> {
+        class UpdateMateri extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(LihatDetailInstruktur.this,
+                loading = ProgressDialog.show(LihatDetailMateri.this,
                         "Updating Data...", "Harap menunggu...",
                         false, false);
             }
@@ -129,13 +125,11 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put(Konfigurasi.KEY_INS_ID, id);
-                hashMap.put(Konfigurasi.KEY_INS_NAMA, nama_ins);
-                hashMap.put(Konfigurasi.KEY_INS_EMAIL, email_ins);
-                hashMap.put(Konfigurasi.KEY_INS_HP, hp_ins);
+                hashMap.put(Konfigurasi.KEY_MAT_ID, id);
+                hashMap.put(Konfigurasi.KEY_MAT_NAMA, materi);
 
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendPostRequest(Konfigurasi.URL_UPDATE_INS, hashMap);
+                String result = handler.sendPostRequest(Konfigurasi.URL_UPDATE_MAT, hashMap);
                 return result;
             }
 
@@ -147,10 +141,10 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             }
         }
 
-        UpdateInstruktur ue = new UpdateInstruktur();
-        ue.execute();
+        UpdateMateri um = new UpdateMateri();
+        um.execute();
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailInstruktur.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailMateri.this);
         alertDialogBuilder.setMessage("Update lagi?");
 
         alertDialogBuilder.setPositiveButton("Ya",
@@ -179,7 +173,7 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(LihatDetailInstruktur.this,
+                loading = ProgressDialog.show(LihatDetailMateri.this,
                         "Mengambil Data", "Harap menunggu...",
                         false, false);
             }
@@ -187,7 +181,7 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_GET_DETAIL_INS, id);
+                String result = handler.sendGetResponse(Konfigurasi.URL_GET_DETAIL_MAT, id);
                 return result;
             }
 
@@ -208,13 +202,11 @@ public class LihatDetailInstruktur extends AppCompatActivity {
             JSONArray result = jsonObject.getJSONArray(Konfigurasi.TAG_JSON_ARRAY);
             JSONObject object = result.getJSONObject(0);
 
-            String nama_ins = object.getString(Konfigurasi.TAG_JSON_INS_NAMA);
-            String email_ins = object.getString(Konfigurasi.TAG_JSON_INS_EMAIL);
-            String hp_ins = object.getString(Konfigurasi.TAG_JSON_INS_HP);
+            String mat_id = object.getString(Konfigurasi.TAG_JSON_MAT_ID);
+            String mat_nama = object.getString(Konfigurasi.TAG_JSON_MAT_NAMA);
 
-            edit_nama_ins.setText(nama_ins);
-            edit_email_ins.setText(email_ins);
-            edit_hp_ins.setText(hp_ins);
+            edit_id_mat.setText(mat_id);
+            edit_nama_mat.setText(mat_nama);
 
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -53,16 +53,16 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
         pesertaBinding.listViewPeserta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getActivity(), LihatDetailInstruktur.class);
-//                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
-//                String insId = map.get(Konfigurasi.TAG_JSON_INS_ID).toString();
-//                intent.putExtra(Konfigurasi.INS_ID, insId);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), LihatDetailPeserta.class);
+                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
+                String pstId = map.get(Konfigurasi.TAG_JSON_PST_ID).toString();
+                intent.putExtra(Konfigurasi.PST_ID, pstId);
+                startActivity(intent);
             }
         });
 
         // penanganan FAB
-//        materiBinding.btnTambahInstruktur.setOnClickListener(this);
+        pesertaBinding.btnTambahPeserta.setOnClickListener(this);
 
         // ambil data dari JSON
         getJsonData();
@@ -144,6 +144,6 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
     @Override
     public void onClick(View v) {
         // penanganan FAB
-//        startActivity(new Intent(view.getContext(), TambahDataInstruktur.class));
+        startActivity(new Intent(view.getContext(), TambahDataPeserta.class));
     }
 }

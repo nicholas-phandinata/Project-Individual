@@ -53,11 +53,11 @@ public class KelasFragment extends Fragment implements MainActivity.OnBackPresse
         kelasBinding.listViewKelas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getActivity(), LihatDetailInstruktur.class);
-//                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
-//                String insId = map.get(Konfigurasi.TAG_JSON_INS_ID).toString();
-//                intent.putExtra(Konfigurasi.INS_ID, insId);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), LihatDetailKelas.class);
+                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
+                String klsId = map.get(Konfigurasi.TAG_JSON_KLS_ID).toString();
+                intent.putExtra(Konfigurasi.KLS_ID, klsId);
+                startActivity(intent);
             }
         });
 
@@ -146,6 +146,6 @@ public class KelasFragment extends Fragment implements MainActivity.OnBackPresse
     @Override
     public void onClick(View v) {
         // penanganan FAB
-//        startActivity(new Intent(view.getContext(), TambahDataInstruktur.class));
+        startActivity(new Intent(view.getContext(), TambahDataKelas.class));
     }
 }

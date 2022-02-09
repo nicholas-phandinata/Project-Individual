@@ -53,11 +53,11 @@ public class DetailKelasFragment extends Fragment implements MainActivity.OnBack
         detailKelasBinding.listViewDetailKelas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getActivity(), LihatDetailInstruktur.class);
-//                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
-//                String insId = map.get(Konfigurasi.TAG_JSON_INS_ID).toString();
-//                intent.putExtra(Konfigurasi.INS_ID, insId);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), LihatDetailDetailKelas.class);
+                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
+                String id_kls = map.get(Konfigurasi.TAG_JSON_DT_KLS_ID_KLS).toString();
+                intent.putExtra(Konfigurasi.DT_KLS_ID, id_kls);
+                startActivity(intent);
             }
         });
 

@@ -53,16 +53,16 @@ public class MateriFragment extends Fragment implements MainActivity.OnBackPress
         materiBinding.listViewMateri.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getActivity(), LihatDetailInstruktur.class);
-//                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
-//                String insId = map.get(Konfigurasi.TAG_JSON_INS_ID).toString();
-//                intent.putExtra(Konfigurasi.INS_ID, insId);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), LihatDetailMateri.class);
+                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
+                String matId = map.get(Konfigurasi.TAG_JSON_MAT_ID).toString();
+                intent.putExtra(Konfigurasi.MAT_ID, matId);
+                startActivity(intent);
             }
         });
 
         // penanganan FAB
-//        materiBinding.btnTambahInstruktur.setOnClickListener(this);
+        materiBinding.btnTambahMateri.setOnClickListener(this);
 
         // ambil data dari JSON
         getJsonData();
@@ -144,6 +144,6 @@ public class MateriFragment extends Fragment implements MainActivity.OnBackPress
     @Override
     public void onClick(View v) {
         // penanganan FAB
-//        startActivity(new Intent(view.getContext(), TambahDataInstruktur.class));
+        startActivity(new Intent(view.getContext(), TambahDataMateri.class));
     }
 }
