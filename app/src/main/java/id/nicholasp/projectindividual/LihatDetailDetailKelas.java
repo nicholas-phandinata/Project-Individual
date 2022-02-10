@@ -142,11 +142,11 @@ public class LihatDetailDetailKelas extends AppCompatActivity
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         // ketika salah satu list dipilih
         // detail: ID, Name, Desg, Salary
-//        Intent myIntent = new Intent(LihatDetailDetailKelas.this,
-//                LihatDetailDataActivity.class);
-//        HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
-//        String nsbhId = map.get(Konfigurasi.TAG_JSON_ID).toString();
-//        myIntent.putExtra(Konfigurasi.NSBH_ID, nsbhId);
-//        startActivity(myIntent);
+        Intent myIntent = new Intent(LihatDetailDetailKelas.this,
+                LihatDetailDetailDetailKelas.class);
+        HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
+        String dtKlsId = map.get(Konfigurasi.TAG_JSON_DT_KLS_ID_DETAIL_KLS).toString();
+        myIntent.putExtra("id_dt_kls", dtKlsId);
+        startActivity(myIntent);
     }
 }

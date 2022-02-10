@@ -28,6 +28,7 @@ public class Konfigurasi {
 
     public static final String URL_GET_ALL_DT_KLS = "http://192.168.1.8/inixindo/detail_kelas/tr_datas_detail_kelas.php";
     public static final String URL_GET_DETAIL_DT_KLS = "http://192.168.1.8/inixindo/detail_kelas/tr_detail_detail_kelas.php?id_kls=";
+    public static final String URL_GET_DETAIL_DETAIL_DT_KLS = "http://192.168.1.8/inixindo/detail_kelas/tr_detail_detail_detail_kelas.php?id_dt_kls=";
     public static final String URL_ADD_DT_KLS = "http://192.168.1.8/inixindo/instruktur/tr_add_instruktur.php";
     public static final String URL_UPDATE_DT_KLS = "http://192.168.1.8/inixindo/instruktur/tr_update_instruktur.php";
     public static final String URL_DELETE_DT_KLS = "http://192.168.1.8/inixindo/instruktur/tr_delete_instruktur.php?id_ins=";
