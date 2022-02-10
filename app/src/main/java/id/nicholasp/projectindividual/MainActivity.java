@@ -38,6 +38,66 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        // custom toolbar
+        setSupportActionBar(binding.toolbar);
+        binding.toolbar.setTitleTextColor(Color.WHITE);
+        Fragment fragment = null;
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String myStr = "home";
+        if(extras != null)
+            if(extras != null){
+                myStr = extras.getString("KeyName");
+            } else {
+                myStr = "home";
+            }
+
+        switch (myStr){
+            case "home":
+                //default fragment dibuka pertama kali
+                getSupportActionBar().setTitle("Home");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameLayout, new HomeFragment())
+                        .commit();
+                binding.navView.setCheckedItem(R.id.nav_home);
+                break;
+            case "instruktur":
+                getSupportActionBar().setTitle("Instruktur");
+                fragment = new InstrukturFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragment);
+                binding.navView.setCheckedItem(R.id.nav_instruktur);
+                break;
+            case "materi":
+                getSupportActionBar().setTitle("Materi");
+                fragment = new MateriFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragment);
+                binding.navView.setCheckedItem(R.id.nav_materi);
+                break;
+            case "peserta":
+                getSupportActionBar().setTitle("Peserta");
+                fragment = new PesertaFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragment);
+                binding.navView.setCheckedItem(R.id.nav_peserta);
+                break;
+            case "kelas":
+                getSupportActionBar().setTitle("Kelas");
+                fragment = new KelasFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragment);
+                binding.navView.setCheckedItem(R.id.nav_kelas);
+                break;
+            case "detail kelas":
+                getSupportActionBar().setTitle("Detail Kelas");
+                fragment = new DetailKelasFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragment);
+                binding.navView.setCheckedItem(R.id.nav_detail_kelas);
+                break;
+        }
         // clickable pada button di custom header
         NavigationView navigationView = findViewById(R.id.navView);
         View headerView = getLayoutInflater().inflate(R.layout.nav_header_layout,
@@ -54,16 +114,13 @@ public class MainActivity extends AppCompatActivity {
                 intent.setData(Uri.parse("https://www.inixindo.id"));
                 startActivity(intent);
             }
+
         });
 
-        // custom toolbar
-        setSupportActionBar(binding.toolbar);
-        binding.toolbar.setTitleTextColor(Color.WHITE);
-
         // default fragment dibuka pertama kali
-        getSupportActionBar().setTitle("Instruktur Fragment");
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new InstrukturFragment()).commit();
-        binding.navView.setCheckedItem(R.id.nav_instruktur);
+//        getSupportActionBar().setTitle("Home Fragment");
+//        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+//        binding.navView.setCheckedItem(R.id.nav_home);
 
         // membuka drawer
         toggle = new ActionBarDrawerToggle(this, binding.drawer, binding.toolbar,
@@ -82,6 +139,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        fragment = new HomeFragment();
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
                     case R.id.nav_instruktur:
                         fragment = new InstrukturFragment();
                         binding.drawer.closeDrawer(GravityCompat.START);
@@ -126,8 +188,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (onBackPressedListener != null) {
-            getSupportActionBar().setTitle("Instruktur Fragment");
-            binding.navView.setCheckedItem(R.id.nav_instruktur);
+            getSupportActionBar().setTitle("Home Fragment");
+            binding.navView.setCheckedItem(R.id.nav_home);
             onBackPressedListener.doBack();
             binding.drawer.closeDrawer(GravityCompat.START);
         } else if (onBackPressedListener == null) {

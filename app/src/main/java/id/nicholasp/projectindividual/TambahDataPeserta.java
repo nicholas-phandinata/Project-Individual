@@ -3,6 +3,7 @@ package id.nicholasp.projectindividual;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -70,6 +71,9 @@ public class TambahDataPeserta extends AppCompatActivity implements View.OnClick
             protected void onPostExecute(String message) {
                 super.onPostExecute(message);
                 loading.dismiss();
+                Intent intent = new Intent(TambahDataPeserta.this, MainActivity.class);
+                intent.putExtra("KeyName", "peserta");
+                startActivity(intent);
             }
         }
         TambahPeserta tp = new TambahPeserta();

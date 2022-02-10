@@ -62,7 +62,7 @@ public class KelasFragment extends Fragment implements MainActivity.OnBackPresse
         });
 
         // penanganan FAB
-//        materiBinding.btnTambahInstruktur.setOnClickListener(this);
+        kelasBinding.btnTambahKelas.setOnClickListener(this);
 
         // ambil data dari JSON
         getJsonData();

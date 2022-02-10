@@ -105,6 +105,9 @@ public class LihatDetailPeserta extends AppCompatActivity {
                 super.onPostExecute(message);
                 loading.dismiss();
                 displayDetailData(message);
+                Intent intent = new Intent(LihatDetailPeserta.this, MainActivity.class);
+                intent.putExtra("KeyName", "peserta");
+                startActivity(intent);
             }
         }
         DeletePeserta dp = new DeletePeserta();
@@ -147,6 +150,9 @@ public class LihatDetailPeserta extends AppCompatActivity {
                 super.onPostExecute(message);
                 loading.dismiss();
                 displayDetailData(message);
+                Intent intent = new Intent(LihatDetailPeserta.this, MainActivity.class);
+                intent.putExtra("KeyName", "peserta");
+                startActivity(intent);
             }
         }
 

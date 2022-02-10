@@ -22,7 +22,7 @@ public class Konfigurasi {
 
     public static final String URL_GET_ALL_KLS = "http://192.168.1.8/inixindo/kelas/tr_datas_kelas.php";
     public static final String URL_GET_DETAIL_KLS = "http://192.168.1.8/inixindo/kelas/tr_detail_kelas.php?id_kls=";
-    public static final String URL_ADD_KLS = "http://192.168.1.8/inixindo/instruktur/tr_add_instruktur.php";
+    public static final String URL_ADD_KLS = "http://192.168.1.8/inixindo/kelas/tr_add_kelas.php";
     public static final String URL_UPDATE_KLS = "http://192.168.1.8/inixindo/instruktur/tr_update_instruktur.php";
     public static final String URL_DELETE_KLS = "http://192.168.1.8/inixindo/instruktur/tr_delete_instruktur.php?id_ins=";
 
