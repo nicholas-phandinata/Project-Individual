@@ -21,41 +21,36 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TambahDataKelas extends AppCompatActivity implements View.OnClickListener {
+public class TambahDataDetailKelas extends AppCompatActivity implements View.OnClickListener {
     String JSON_STRING1, slct_spin1, JSON_STRING2, slct_spin2, id_ins, id_mat, n1, n2, j1, j2;
-    EditText edit_mulai_kelas, edit_akhir_kelas;
-    Button btn_tambah_kelas;
-    Spinner spn_id_ins, spn_id_mat;
+    Button btn_tambah_detail_kelas;
+    Spinner spn1, spn2;
     private int spinner_value, spinner_value2;
-    String url = "http://192.168.1.8/inixindo/kelas/tr_add_kelas_mod.php?nama_ins=";
-    String url2 = "http://192.168.1.8/inixindo/kelas/tr_add_kelas_mod2.php?nama_mat=";
+    String url = "http://192.168.1.100/inixindo/detail_kelas/tr_dropdown_ins_kelas.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_data_kelas);
+        setContentView(R.layout.activity_tambah_data_detail_kelas);
 
-        spn_id_ins = findViewById(R.id.spinner1);
-        spn_id_mat = findViewById(R.id.spinner2);
+        spn1 = findViewById(R.id.spinnerdk1);
+        spn2 = findViewById(R.id.spinnerdk2);
+        btn_tambah_detail_kelas = findViewById(R.id.btn_tambah_detail_kelas);
 
-        edit_mulai_kelas = findViewById(R.id.edit_mulai_kelas);
-        edit_akhir_kelas = findViewById(R.id.edit_akhir_kelas);
-        btn_tambah_kelas = findViewById(R.id.btn_tambah_kelas);
+        btn_tambah_detail_kelas.setOnClickListener(this);
 
-        btn_tambah_kelas.setOnClickListener(this);
-
-        getJSONins();
-        getJSONmat();
+        getJSONspn1();
+        getJSONspn2();
     }
 
-    private void getJSONins() {
-        class GetJSONIns extends AsyncTask<Void, Void, String> { //inner class
+    private void getJSONspn1() {
+        class GetJSONSpn1 extends AsyncTask<Void, Void, String> { //inner class
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(TambahDataKelas.this,
+                loading = ProgressDialog.show(TambahDataDetailKelas.this,
                         "Mengambil Data", "Harap menunggu...",
                         false, false);
             }
@@ -63,7 +58,7 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_GET_ALL_INS);
+                String result = handler.sendGetResponse(url);
                 System.out.println(result);
                 return result;
             }
@@ -89,8 +84,8 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
 
                     for (int i=0;i<jsonArray.length(); i++){
                         JSONObject object = jsonArray.getJSONObject(i);
-                        String id = object.getString("id_ins");
-                        String nama = object.getString("nama_ins");
+                        String id = object.getString("id_kls");
+                        String nama = object.getString("kls_info");
 
                         listId.add(id);
                         listNama.add(nama);
@@ -101,12 +96,12 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
                     e.printStackTrace();
                 }
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(TambahDataKelas.this, android.R.layout.simple_spinner_dropdown_item, listNama);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(TambahDataDetailKelas.this, android.R.layout.simple_spinner_dropdown_item, listNama);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                spn_id_ins.setAdapter(adapter);
+                spn1.setAdapter(adapter);
 
-                spn_id_ins.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                spn1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         spinner_value = Integer.parseInt(listId.get(i));
@@ -119,18 +114,18 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
                 });
             }
         }
-        GetJSONIns getJSONIns = new GetJSONIns();
-        getJSONIns.execute();
+        GetJSONSpn1 getJSONSpn1 = new GetJSONSpn1();
+        getJSONSpn1.execute();
     }
 
-    private void getJSONmat() {
-        class GetJSONMat extends AsyncTask<Void, Void, String> { //inner class
+    private void getJSONspn2() {
+        class GetJSONSpn2 extends AsyncTask<Void, Void, String> { //inner class
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(TambahDataKelas.this,
+                loading = ProgressDialog.show(TambahDataDetailKelas.this,
                         "Mengambil Data", "Harap menunggu...",
                         false, false);
             }
@@ -138,7 +133,7 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_GET_ALL_MAT);
+                String result = handler.sendGetResponse(Konfigurasi.URL_GET_ALL_PST);
                 return result;
             }
 
@@ -161,8 +156,8 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
 
                     for (int i=0;i<jsonArray.length(); i++){
                         JSONObject object = jsonArray.getJSONObject(i);
-                        String id = object.getString("id_mat");
-                        String nama = object.getString("nama_mat");
+                        String id = object.getString("id_pst");
+                        String nama = object.getString("nama_pst");
 
                         listId.add(id);
                         listNama.add(nama);
@@ -174,11 +169,11 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
                     e.printStackTrace();
                 }
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(TambahDataKelas.this, android.R.layout.simple_spinner_dropdown_item, listNama);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(TambahDataDetailKelas.this, android.R.layout.simple_spinner_dropdown_item, listNama);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                spn_id_mat.setAdapter(adapter);
-                spn_id_mat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                spn2.setAdapter(adapter);
+                spn2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         spinner_value2 = Integer.parseInt(listId.get(i));
@@ -191,28 +186,26 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
                 });
             }
         }
-        GetJSONMat getJSONMat = new GetJSONMat();
-        getJSONMat.execute();
+        GetJSONSpn2 getJSONSpn2 = new GetJSONSpn2();
+        getJSONSpn2.execute();
     }
 
     @Override
     public void onClick(View v) {
-        tambahKelas();
+        tambahDetailKelas();
     }
 
-    private void tambahKelas() {
-        String mulai = edit_mulai_kelas.getText().toString().trim();
-        String akhir = edit_akhir_kelas.getText().toString().trim();
+    private void tambahDetailKelas() {
         String n1 = String.valueOf(spinner_value);
         String n2 = String.valueOf(spinner_value2);
 
-        class TambahKelas extends AsyncTask<Void, Void, String> {
+        class TambahDetailKelas extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(TambahDataKelas.this,
+                loading = ProgressDialog.show(TambahDataDetailKelas.this,
                         "Menambah Data...", "Harap menunggu...",
                         false, false);
             }
@@ -220,13 +213,11 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
             @Override
             protected String doInBackground(Void... v) {
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put("tgl_mulai_kls", mulai);
-                hashMap.put("tgl_akhir_kls", akhir);
-                hashMap.put("id_ins", n1);
-                hashMap.put("id_mat", n2);
+                hashMap.put("id_kls", n1);
+                hashMap.put("id_pst", n2);
 
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendPostRequest(Konfigurasi.URL_ADD_KLS, hashMap);
+                String result = handler.sendPostRequest(Konfigurasi.URL_ADD_DT_KLS, hashMap);
                 Log.d("Uwu", result);
                 return result;
             }
@@ -235,12 +226,12 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
             protected void onPostExecute(String message) {
                 super.onPostExecute(message);
                 loading.dismiss();
-                Intent intent = new Intent(TambahDataKelas.this, MainActivity.class);
-                intent.putExtra("KeyName", "kelas");
+                Intent intent = new Intent(TambahDataDetailKelas.this, MainActivity.class);
+                intent.putExtra("KeyName", "detail kelas");
                 startActivity(intent);
             }
         }
-        TambahKelas tk = new TambahKelas();
-        tk.execute();
+        TambahDetailKelas tdk = new TambahDetailKelas();
+        tdk.execute();
     }
 }

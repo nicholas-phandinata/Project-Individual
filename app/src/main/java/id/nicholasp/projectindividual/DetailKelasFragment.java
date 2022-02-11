@@ -62,7 +62,7 @@ public class DetailKelasFragment extends Fragment implements MainActivity.OnBack
         });
 
         // penanganan FAB
-//        materiBinding.btnTambahInstruktur.setOnClickListener(this);
+        detailKelasBinding.btnTambahDetailKelas.setOnClickListener(this);
 
         // ambil data dari JSON
         getJsonData();
@@ -144,6 +144,6 @@ public class DetailKelasFragment extends Fragment implements MainActivity.OnBack
     @Override
     public void onClick(View v) {
         // penanganan FAB
-//        startActivity(new Intent(view.getContext(), TambahDataInstruktur.class));
+        startActivity(new Intent(view.getContext(), TambahDataDetailKelas.class));
     }
 }

@@ -61,7 +61,7 @@ public class LihatDetailKelas extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-//                                deleteKelas();
+                                deleteKelas();
                             }
                         });
 
@@ -81,35 +81,38 @@ public class LihatDetailKelas extends AppCompatActivity {
         getJSON();
     }
 
-//    private void deleteKelas() {
-//        class DeletePeserta extends AsyncTask<Void, Void, String> {
-//            ProgressDialog loading;
-//
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//                loading = ProgressDialog.show(LihatDetailPeserta.this,
-//                        "Deleting Data...", "Harap menunggu...",
-//                        false, false);
-//            }
-//
-//            @Override
-//            protected String doInBackground(Void... params) {
-//                HttpHandler handler = new HttpHandler();
-//                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_PST, id);
-//                return result;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(String message) {
-//                super.onPostExecute(message);
-//                loading.dismiss();
-//                displayDetailData(message);
-//            }
-//        }
-//        DeletePeserta dp = new DeletePeserta();
-//        dp.execute();
-//    }
+    private void deleteKelas() {
+        class DeletePeserta extends AsyncTask<Void, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(LihatDetailKelas.this,
+                        "Deleting Data...", "Harap menunggu...",
+                        false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_KLS, id);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) {
+                super.onPostExecute(message);
+                loading.dismiss();
+                displayDetailData(message);
+                Intent intent = new Intent(LihatDetailKelas.this, MainActivity.class);
+                intent.putExtra("KeyName", "kelas");
+                startActivity(intent);
+            }
+        }
+        DeletePeserta dp = new DeletePeserta();
+        dp.execute();
+    }
 //
 //    private void updatePeserta() {
 //        final String nama_pst = edit_nama_pst.getText().toString().trim();
