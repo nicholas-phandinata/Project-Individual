@@ -1,8 +1,11 @@
 package id.nicholasp.projectindividual;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,9 +15,11 @@ import android.widget.EditText;
 
 import java.util.HashMap;
 
+
 public class TambahDataInstruktur extends AppCompatActivity implements View.OnClickListener{
     EditText edit_nama_ins, edit_email_ins, edit_hp_ins;
     Button btn_tambah_ins;
+    private Toolbar toolbarTambahKelas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,11 @@ public class TambahDataInstruktur extends AppCompatActivity implements View.OnCl
         btn_tambah_ins = findViewById(R.id.btn_tambah_ins);
 
         btn_tambah_ins.setOnClickListener(this);
+
+        toolbarTambahKelas = findViewById(R.id.toolbartambahkelas);
+        setSupportActionBar(toolbarTambahKelas);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override
@@ -76,7 +86,12 @@ public class TambahDataInstruktur extends AppCompatActivity implements View.OnCl
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        onBackPressed();
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

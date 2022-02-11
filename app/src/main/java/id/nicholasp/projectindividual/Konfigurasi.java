@@ -23,15 +23,16 @@ public class Konfigurasi {
     public static final String URL_GET_ALL_KLS = "http://192.168.1.100/inixindo/kelas/tr_datas_kelas.php";
     public static final String URL_GET_DETAIL_KLS = "http://192.168.1.100/inixindo/kelas/tr_detail_kelas.php?id_kls=";
     public static final String URL_ADD_KLS = "http://192.168.1.100/inixindo/kelas/tr_add_kelas.php";
-    public static final String URL_UPDATE_KLS = "http://192.168.1.8/inixindo/instruktur/tr_update_instruktur.php";
+    public static final String URL_UPDATE_KLS = "http://192.168.1.100/inixindo/kelas/tr_update_kelas.php";
     public static final String URL_DELETE_KLS = "http://192.168.1.100/inixindo/kelas/tr_delete_kelas.php?id_kls=";
 
     public static final String URL_GET_ALL_DT_KLS = "http://192.168.1.100/inixindo/detail_kelas/tr_datas_detail_kelas.php";
     public static final String URL_GET_DETAIL_DT_KLS = "http://192.168.1.100/inixindo/detail_kelas/tr_detail_detail_kelas.php?id_kls=";
     public static final String URL_GET_DETAIL_DETAIL_DT_KLS = "http://192.168.1.100/inixindo/detail_kelas/tr_detail_detail_detail_kelas.php?id_dt_kls=";
     public static final String URL_ADD_DT_KLS = "http://192.168.1.100/inixindo/detail_kelas/tr_add_detail_kelas.php";
-    public static final String URL_UPDATE_DT_KLS = "http://192.168.1.8/inixindo/instruktur/tr_update_instruktur.php";
+    public static final String URL_UPDATE_DT_KLS = "http://192.168.1.100/inixindo/detail_kelas/tr_update_detail_kelas.php";
     public static final String URL_DELETE_DT_KLS = "http://192.168.1.100/inixindo/detail_kelas/tr_delete_detail_kelas.php?id_kls=";
+    public static final String URL_DELETE_DT_DT_KLS = "http://192.168.1.100/inixindo/detail_kelas/tr_delete_detail_detail_kelas.php?id_dt_kls=";
 
     //key and value JSON yang muncul di browser
     public static final String KEY_INS_ID = "id_ins";

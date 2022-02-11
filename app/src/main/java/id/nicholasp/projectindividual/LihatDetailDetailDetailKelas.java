@@ -20,7 +20,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class LihatDetailDetailDetailKelas extends AppCompatActivity {
-    EditText edit_id_dt_kls, edit_dt_id_kls, edit_nm_pst;
+    EditText edit_id_dt_kls, edit_dt_kls_inf, edit_nm_pst;
     String id;
     Button btn_update_dt_kls;
     Button btn_delete_dt_kls;
@@ -31,7 +31,7 @@ public class LihatDetailDetailDetailKelas extends AppCompatActivity {
         setContentView(R.layout.activity_lihat_detail_detail_detail_kelas);
 
         edit_id_dt_kls = findViewById(R.id.edit_id_dt_kls);
-        edit_dt_id_kls = findViewById(R.id.edit_dt_id_kls);
+        edit_dt_kls_inf = findViewById(R.id.edit_dt_kls_info);
         edit_nm_pst = findViewById(R.id.edit_nm_pst);
 
         //menerima intent dari class
@@ -46,7 +46,9 @@ public class LihatDetailDetailDetailKelas extends AppCompatActivity {
         btn_update_dt_kls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                updateDetailKelas();
+                Intent intent = new Intent(LihatDetailDetailDetailKelas.this, UpdateDetailKelas.class);
+                intent.putExtra("id_dt_kls", id);
+                startActivity(intent);
             }
         });
         btn_delete_dt_kls.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +61,7 @@ public class LihatDetailDetailDetailKelas extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-//                                deleteDetailKelas();
+                                deleteDetailKelas();
                             }
                         });
 
@@ -79,35 +81,37 @@ public class LihatDetailDetailDetailKelas extends AppCompatActivity {
         getJSON();
     }
 
-//    private void deleteInstruktur() {
-//        class DeleteInstruktur extends AsyncTask<Void, Void, String> {
-//            ProgressDialog loading;
-//
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//                loading = ProgressDialog.show(LihatDetailDetailDetailKelas.this,
-//                        "Deleting Data...", "Harap menunggu...",
-//                        false, false);
-//            }
-//
-//            @Override
-//            protected String doInBackground(Void... params) {
-//                HttpHandler handler = new HttpHandler();
-//                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_INS, id);
-//                return result;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(String message) {
-//                super.onPostExecute(message);
-//                loading.dismiss();
-//                displayDetailData(message);
-//            }
-//        }
-//        DeleteInstruktur de = new DeleteInstruktur();
-//        de.execute();
-//    }
+    private void deleteDetailKelas() {
+        class DeleteDetailKelas extends AsyncTask<Void, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(LihatDetailDetailDetailKelas.this,
+                        "Deleting Data...", "Harap menunggu...",
+                        false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_DT_DT_KLS, id);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) {
+                super.onPostExecute(message);
+                loading.dismiss();
+                Intent intent = new Intent(LihatDetailDetailDetailKelas.this, MainActivity.class);
+                intent.putExtra("KeyName", "detail kelas");
+                startActivity(intent);
+            }
+        }
+        DeleteDetailKelas ddk = new DeleteDetailKelas();
+        ddk.execute();
+    }
 
 //    private void updateInstruktur() {
 //        final String nama_ins = edit_nama_ins.getText().toString().trim();
@@ -208,11 +212,11 @@ public class LihatDetailDetailDetailKelas extends AppCompatActivity {
             JSONObject object = result.getJSONObject(0);
 
             String id_detail = object.getString("id_dt_kls");
-            String id_kelas = object.getString("id_kls");
+            String kelas_info = object.getString("kls_info");
             String nama = object.getString("nama_pst");
 
             edit_id_dt_kls.setText(id_detail);
-            edit_dt_id_kls.setText(id_kelas);
+            edit_dt_kls_inf.setText(kelas_info);
             edit_nm_pst.setText(nama);
 
         } catch (Exception ex) {

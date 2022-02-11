@@ -48,7 +48,9 @@ public class LihatDetailKelas extends AppCompatActivity {
         button_update_kelas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                updateKelas();
+                Intent intent = new Intent(LihatDetailKelas.this, UpdateKelas.class);
+                intent.putExtra(Konfigurasi.KLS_ID, id);
+                startActivity(intent);
             }
         });
         button_delete_kelas.setOnClickListener(new View.OnClickListener() {
