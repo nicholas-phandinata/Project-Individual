@@ -3,7 +3,9 @@ package id.nicholasp.projectindividual;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,10 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,6 +33,7 @@ public class LihatDetailDetailKelas extends AppCompatActivity
     String id_kls;
     private ListView list_view;
     private String JSON_STRING;
+    FloatingActionButton btn_delete_dt_kls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +44,71 @@ public class LihatDetailDetailKelas extends AppCompatActivity
         list_view = findViewById(R.id.list_view_detail_detail_kelas);
         list_view.setOnItemClickListener(this);
 
+        btn_delete_dt_kls = findViewById(R.id.btn_delete_detail_kelas);
+        btn_delete_dt_kls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailDetailKelas.this);
+                alertDialogBuilder.setMessage("Apakah benar Anda ingin menghapus seluruh kelas ini?");
+
+                alertDialogBuilder.setPositiveButton("Ya",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteKelas();
+                            }
+                        });
+
+                alertDialogBuilder.setNegativeButton("Tidak",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        });
+
+
         Intent receiveIntent = getIntent();
         id_kls = receiveIntent.getStringExtra(Konfigurasi.DT_KLS_ID);
 
         //method untuk ambil data JSON
         getJSON();
+    }
+
+    private void deleteKelas() {
+        class DeleteKelas extends AsyncTask<Void, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(LihatDetailDetailKelas.this,
+                        "Deleting Data...", "Harap menunggu...",
+                        false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendGetResponse(Konfigurasi.URL_DELETE_DT_KLS, id_kls);
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String message) {
+                super.onPostExecute(message);
+                loading.dismiss();
+                Intent intent = new Intent(LihatDetailDetailKelas.this, MainActivity.class);
+                intent.putExtra("KeyName", "detail kelas");
+                startActivity(intent);
+            }
+        }
+        DeleteKelas dk = new DeleteKelas();
+        dk.execute();
     }
 
 //    //menampilkan options menu pada toolbar

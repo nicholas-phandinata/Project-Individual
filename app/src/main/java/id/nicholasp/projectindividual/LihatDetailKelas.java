@@ -82,7 +82,7 @@ public class LihatDetailKelas extends AppCompatActivity {
     }
 
     private void deleteKelas() {
-        class DeletePeserta extends AsyncTask<Void, Void, String> {
+        class DeleteKelas extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
             @Override
@@ -110,8 +110,8 @@ public class LihatDetailKelas extends AppCompatActivity {
                 startActivity(intent);
             }
         }
-        DeletePeserta dp = new DeletePeserta();
-        dp.execute();
+        DeleteKelas dk = new DeleteKelas();
+        dk.execute();
     }
 //
 //    private void updatePeserta() {
