@@ -33,6 +33,14 @@
         <item
             android:id="@+id/nav_search"
             android:icon="@android:drawable/ic_menu_more"
-            android:title="Search" />
+            android:title="Search Materi Info" />
+        <item
+            android:id="@+id/nav_search2"
+            android:icon="@android:drawable/ic_menu_more"
+            android:title="Search Peserta Info" />
+        <item
+            android:id="@+id/nav_search3"
+            android:icon="@android:drawable/ic_menu_more"
+            android:title="Search Kelas Info" />
     </group>
 </menu>

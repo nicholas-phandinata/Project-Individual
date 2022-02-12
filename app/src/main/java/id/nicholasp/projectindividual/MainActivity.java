@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
+                        getSupportActionBar().setTitle("Home");
                         fragment = new HomeFragment();
                         binding.drawer.closeDrawer(GravityCompat.START);
                         callFragment(fragment);
@@ -170,7 +171,20 @@ public class MainActivity extends AppCompatActivity {
                         callFragment(fragment);
                         break;
                     case R.id.nav_search:
+                        getSupportActionBar().setTitle("Search Materi Info");
                         fragment = new SearchFragment();
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
+                    case R.id.nav_search2:
+                        getSupportActionBar().setTitle("Search Peserta Info");
+                        fragment = new Search2Fragment();
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
+                    case R.id.nav_search3:
+                        getSupportActionBar().setTitle("Search Kelas Info");
+                        fragment = new Search3Fragment();
                         binding.drawer.closeDrawer(GravityCompat.START);
                         callFragment(fragment);
                         break;

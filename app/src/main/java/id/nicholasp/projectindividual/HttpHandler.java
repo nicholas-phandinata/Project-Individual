@@ -110,4 +110,22 @@ public class HttpHandler {
         }
         return sb.toString();
     }
+
+    public String sendGetResponse(String responseUrl, String id, String str) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            URL url = new URL(responseUrl + id + str);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream())
+            );
+            String response;
+            while ((response = reader.readLine()) != null) {
+                sb.append(response + "\n");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return sb.toString();
+    }
 }
