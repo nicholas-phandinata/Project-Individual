@@ -5,11 +5,17 @@
     <string name="open">drawer</string>
     <string name="close">drawer</string>
 
-    <string-array name="home_gender">
+    <string-array name="home_kondisi_badan">
         <item></item>
-        <item>Laki - laki</item>
-        <item>Perempuan</item>
-        <item>Other</item>
+        <item>Fit</item>
+        <item>Biasa saja</item>
+        <item>Lelah</item>
+    </string-array>
+
+    <string-array name="search_by_table">
+        <item>Instruktur</item>
+        <item>Peserta</item>
+        <item>Materi</item>
     </string-array>
 
 </resources>

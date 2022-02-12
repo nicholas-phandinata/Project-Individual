@@ -10,8 +10,12 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="match_parent"
-        android:layout_height="180dp" />
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/home_img" />
 
     <TextView
         android:id="@+id/textView"
@@ -19,16 +23,16 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
         android:fontFamily="sans-serif"
-        android:text="Welcome"
+        android:text="Deklarasi Kesehatan"
         android:textAlignment="center"
         android:textSize="18dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:text="Apa yang Anda ingin lakukan hari ini?"
+        android:text="Stay Healthy With Others"
         android:textAlignment="center"
         android:textSize="14sp" />
 
@@ -40,19 +44,19 @@
         android:padding="30dp">
 
         <EditText
-            android:id="@+id/home_edit_name"
+            android:id="@+id/home_edit_lokasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Masukan nama"/>
+            android:hint="Lokasi terakhir yang dikunjungi"/>
 
 
         <EditText
-            android:id="@+id/home_edit_email"
+            android:id="@+id/home_edit_domisili"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Masukan e-mail"/>
+            android:hint="Domisili saat ini"/>
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Jenis Kelamin"
+                    android:text="Kondisi badan saat ini"
                     android:textSize="18sp" />
 
                 <Spinner
@@ -79,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:entries="@array/home_gender" />
+                    android:entries="@array/home_kondisi_badan" />
             </LinearLayout>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -100,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="Subscibe Email"
+                    android:text="Sudah Vaksin?"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -126,13 +130,14 @@
                             />
 
                         <RadioButton
-                            android:id="@+id/radioButton_tidak"
+                            android:id="@+id/radioButton_belum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Tidak"
+                            android:text="Belum"
                             android:textAlignment="center"
                             android:checked="false"/>
+
                     </RadioGroup>
 
                 </LinearLayout>
@@ -149,10 +154,10 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button_save"
+                android:id="@+id/button_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save" />
+                android:text="Submit" />
         </LinearLayout>
 
 

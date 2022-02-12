@@ -29,7 +29,7 @@ public class UpdateDetailKelas extends AppCompatActivity implements View.OnClick
     Button button_update_conf_dt_kelas;
     Spinner spn_id_kls, spn_id_pst;
     private int spn1, spn2;
-    String url = "http://192.168.1.100/inixindo/detail_kelas/tr_dropdown_ins_kelas.php";
+    String url = "http://192.168.1.7/inixindo/detail_kelas/tr_dropdown_ins_kelas.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

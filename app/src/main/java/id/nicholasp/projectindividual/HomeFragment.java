@@ -2,29 +2,21 @@ package id.nicholasp.projectindividual;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import com.google.android.material.textfield.TextInputLayout;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
     Spinner spinner;
-    Button button_save;
+    Button button_submit;
     RadioGroup radioGroup;
 
     public HomeFragment() {
@@ -36,41 +28,40 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        button_save = view.findViewById(R.id.button_save);
+        button_submit = view.findViewById(R.id.button_submit);
 
-        EditText layout_nama = view.findViewById(R.id.home_edit_name);
-        EditText layout_email = view.findViewById(R.id.home_edit_email);
-        RadioButton yes = (RadioButton) view.findViewById(R.id.radioButton_ya);
-        RadioButton no = (RadioButton) view.findViewById(R.id.radioButton_tidak);
-        spinner = (Spinner) view.findViewById(R.id.home_spinner);
+        EditText lokasi = view.findViewById(R.id.home_edit_lokasi);
+        EditText domisili = view.findViewById(R.id.home_edit_domisili);
+        RadioButton ya = view.findViewById(R.id.radioButton_ya);
+        RadioButton belum = view.findViewById(R.id.radioButton_belum);
+        spinner = view.findViewById(R.id.home_spinner);
 
         radioGroup = view.findViewById(R.id.id_radioGroup);
-        button_save.setOnClickListener(new View.OnClickListener() {
+        button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String res = null;
-                Log.d("nama", String.valueOf(layout_nama.getText()));
-                String nama = String.valueOf(layout_nama.getText());
-                String email = String.valueOf(layout_email.getText());
+                String lok = String.valueOf(lokasi.getText());
+                String dom = String.valueOf(domisili.getText());
 
                 String spinner_val = spinner.getSelectedItem().toString();
 
-                if(yes.isChecked()){
-                    res = "Yes";
+                if(ya.isChecked()){
+                    res = "Ya";
                 }
-                else if(no.isChecked()){
-                    res = "No";
+                else if(belum.isChecked()){
+                    res = "Belum";
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Your Data");
-                builder.setMessage("Nama : " + nama +
-                        "\nEmail: " + email +
-                        "\nJenis Kelamin: " + spinner_val +
-                        "\nSubscribe : " + res);
+                builder.setTitle("Data Yang Akan Disubmit");
+                builder.setMessage("Lokasi Terakhir :  " + lok +
+                        "\nDomisili              :  " + dom +
+                        "\nKondisi Badan   :  " + spinner_val +
+                        "\nSudah Vaksin    :  " + res);
                 builder.setIcon(getResources().getDrawable(android.R.drawable.ic_dialog_info));
                 builder.setCancelable(false);
-                builder.setNegativeButton("Cancel",null);
+                builder.setPositiveButton("OK",null);
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
@@ -82,8 +73,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        if(view == button_save){
-//            Log.d("email", String.valueOf(layout_nama));
+        if(view == button_submit){
         }
     }
 }
