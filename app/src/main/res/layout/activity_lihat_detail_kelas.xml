@@ -13,7 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_green_light"
+            android:background="@color/custom_corporate"
             android:minHeight="?attr/actionBarSize"
             app:title="Detail Kelas"
             app:titleTextColor="@color/white" />
