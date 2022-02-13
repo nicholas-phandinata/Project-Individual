@@ -111,10 +111,12 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
                 JSONObject object = jsonArray.getJSONObject(i);
                 String pst_id = object.getString(Konfigurasi.TAG_JSON_PST_ID);
                 String nama_pst = object.getString(Konfigurasi.TAG_JSON_PST_NAMA);
+                String hp_pst = object.getString(Konfigurasi.TAG_JSON_PST_HP);
 
                 HashMap<String, String> peserta = new HashMap<>();
                 peserta.put(Konfigurasi.TAG_JSON_PST_ID, pst_id);
                 peserta.put(Konfigurasi.TAG_JSON_PST_NAMA, nama_pst);
+                peserta.put(Konfigurasi.TAG_JSON_PST_HP, hp_pst);
 
                 list.add(peserta);
             }
@@ -124,9 +126,9 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
 
         // adapter untuk meletakkan array list kedalam list view
         ListAdapter adapter = new SimpleAdapter(
-                view.getContext(), list, R.layout.list_item_layout,
-                new String[]{Konfigurasi.TAG_JSON_PST_ID, Konfigurasi.TAG_JSON_PST_NAMA},
-                new int[]{R.id.txt_id, R.id.txt_name}
+                view.getContext(), list, R.layout.list_item_layout_3,
+                new String[]{Konfigurasi.TAG_JSON_PST_ID, Konfigurasi.TAG_JSON_PST_NAMA, Konfigurasi.TAG_JSON_PST_HP},
+                new int[]{R.id.txt_id, R.id.txt_name, R.id.txt_phone}
         );
         pesertaBinding.listViewPeserta.setAdapter(adapter);
     }

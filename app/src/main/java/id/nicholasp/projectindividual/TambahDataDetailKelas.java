@@ -28,7 +28,7 @@ public class TambahDataDetailKelas extends AppCompatActivity implements View.OnC
     Spinner spn1, spn2;
     private int spinner_value, spinner_value2;
     private Toolbar toolbar;
-    String url = "http://192.168.1.103/inixindo/detail_kelas/tr_dropdown_ins_kelas.php";
+    String url = "http://192.168.1.6/inixindo/detail_kelas/tr_dropdown_ins_kelas.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

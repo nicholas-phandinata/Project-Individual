@@ -31,7 +31,7 @@
                 android:id="@+id/imageView5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/instruktur" />
+                android:src="@drawable/students" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txt_email"
+                    android:id="@+id/txt_phone"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:layout_marginLeft="16dp"

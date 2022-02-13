@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="8dp"
     android:paddingTop="20dp"
     tools:context=".HomeFragment">
 
@@ -76,6 +77,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="JAN 01 2020"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -88,6 +90,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="JAN 01 2020"
             android:textColor="@color/black"
             android:textSize="20sp" />

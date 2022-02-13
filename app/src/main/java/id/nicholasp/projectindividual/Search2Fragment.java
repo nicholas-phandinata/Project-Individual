@@ -38,7 +38,7 @@ public class Search2Fragment extends Fragment implements MainActivity.OnBackPres
     Button btn_tambah_kelas;
     Spinner spn_id_pst;
     private int spinner_value, spinner_value2;
-    String url = "http://192.168.1.103/inixindo/search/tr_search_id_peserta.php?id_pst=";
+    String url = "http://192.168.1.6/inixindo/search/tr_search_id_peserta.php?id_pst=";
 
 
     public Search2Fragment() {

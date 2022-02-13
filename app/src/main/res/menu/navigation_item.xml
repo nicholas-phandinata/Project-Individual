@@ -4,43 +4,43 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@android:drawable/ic_menu_agenda"
+            android:icon="@drawable/home"
             android:title="Home" />
         <item
             android:id="@+id/nav_instruktur"
-            android:icon="@android:drawable/ic_menu_agenda"
+            android:icon="@drawable/briefing"
             android:title="Instruktur" />
 
         <item
             android:id="@+id/nav_materi"
-            android:icon="@android:drawable/ic_dialog_email"
+            android:icon="@drawable/material"
             android:title="Materi" />
 
         <item
             android:id="@+id/nav_peserta"
-            android:icon="@android:drawable/ic_menu_call"
+            android:icon="@drawable/peserta"
             android:title="Peserta" />
 
         <item
             android:id="@+id/nav_kelas"
-            android:icon="@android:drawable/ic_menu_more"
+            android:icon="@drawable/kelas"
             android:title="Kelas" />
 
         <item
             android:id="@+id/nav_detail_kelas"
-            android:icon="@android:drawable/ic_menu_more"
+            android:icon="@drawable/detail"
             android:title="Detail Kelas" />
         <item
             android:id="@+id/nav_search"
-            android:icon="@android:drawable/ic_menu_more"
+            android:icon="@drawable/searchbook"
             android:title="Search Materi Info" />
         <item
             android:id="@+id/nav_search2"
-            android:icon="@android:drawable/ic_menu_more"
+            android:icon="@drawable/searchpeserta"
             android:title="Search Peserta Info" />
         <item
             android:id="@+id/nav_search3"
-            android:icon="@android:drawable/ic_menu_more"
+            android:icon="@drawable/searchclass"
             android:title="Search Kelas Info" />
     </group>
 </menu>

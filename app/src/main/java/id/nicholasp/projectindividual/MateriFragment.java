@@ -124,7 +124,7 @@ public class MateriFragment extends Fragment implements MainActivity.OnBackPress
 
         // adapter untuk meletakkan array list kedalam list view
         ListAdapter adapter = new SimpleAdapter(
-                view.getContext(), list, R.layout.list_item_layout,
+                view.getContext(), list, R.layout.list_item_layout_2,
                 new String[]{Konfigurasi.TAG_JSON_MAT_ID, Konfigurasi.TAG_JSON_MAT_NAMA},
                 new int[]{R.id.txt_id, R.id.txt_name}
         );

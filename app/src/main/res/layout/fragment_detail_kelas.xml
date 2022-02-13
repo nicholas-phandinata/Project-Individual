@@ -30,7 +30,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 app:fabSize="normal"
-                app:tint="#ffffff" />
+                app:tint="#ffffff"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
         </FrameLayout>
     </LinearLayout>

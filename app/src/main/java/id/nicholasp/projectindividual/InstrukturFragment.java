@@ -109,13 +109,14 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
-                String ins_id = object.getString(Konfigurasi.TAG_JSON_INS_ID);
+                String id_ins = object.getString(Konfigurasi.TAG_JSON_INS_ID);
                 String nama_ins = object.getString(Konfigurasi.TAG_JSON_INS_NAMA);
+                String email_ins = object.getString(Konfigurasi.TAG_JSON_INS_EMAIL);
 
                 HashMap<String, String> instruktur = new HashMap<>();
-                instruktur.put(Konfigurasi.TAG_JSON_INS_ID, ins_id);
+                instruktur.put(Konfigurasi.TAG_JSON_INS_ID, id_ins);
                 instruktur.put(Konfigurasi.TAG_JSON_INS_NAMA, nama_ins);
-
+                instruktur.put(Konfigurasi.TAG_JSON_INS_EMAIL, email_ins);
                 list.add(instruktur);
             }
         } catch (Exception ex) {
@@ -125,8 +126,8 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
         // adapter untuk meletakkan array list kedalam list view
         ListAdapter adapter = new SimpleAdapter(
                 view.getContext(), list, R.layout.list_item_layout,
-                new String[]{Konfigurasi.TAG_JSON_INS_ID, Konfigurasi.TAG_JSON_INS_NAMA},
-                new int[]{R.id.txt_id, R.id.txt_name}
+                new String[]{Konfigurasi.TAG_JSON_INS_ID, Konfigurasi.TAG_JSON_INS_NAMA, Konfigurasi.TAG_JSON_INS_EMAIL},
+                new int[]{R.id.txt_id, R.id.txt_name, R.id.txt_email}
         );
         instrukturBinding.listViewInstruktur.setAdapter(adapter);
     }

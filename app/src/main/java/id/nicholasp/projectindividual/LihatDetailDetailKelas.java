@@ -204,7 +204,7 @@ public class LihatDetailDetailKelas extends AppCompatActivity
         // adapter untuk meletakan array list kedalam list view
         ListAdapter adapter = new SimpleAdapter(
                 getApplicationContext(), list,
-                R.layout.list_item_layout_kelas,
+                R.layout.list_item_layout_4,
                 new String[]{Konfigurasi.TAG_JSON_DT_KLS_ID_KLS, Konfigurasi.TAG_JSON_DT_KLS_ID_DETAIL_KLS, Konfigurasi.TAG_JSON_DT_KLS_NAMA_PST},
                 new int[]{R.id.txt_id_kls, R.id.txt_mulai_kls, R.id.txt_akhir_kls}
         );

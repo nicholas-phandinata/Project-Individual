@@ -39,7 +39,7 @@ public class SearchFragment extends Fragment implements MainActivity.OnBackPress
     Button btn_tambah_kelas;
     Spinner spn_id_ins, spn_id_mat;
     private int spinner_value, spinner_value2;
-    String url2 = "http://192.168.1.103/inixindo/search/tr_search_id_materi.php?id_mat=";
+    String url2 = "http://192.168.1.6/inixindo/search/tr_search_id_materi.php?id_mat=";
 
 
     public SearchFragment() {
