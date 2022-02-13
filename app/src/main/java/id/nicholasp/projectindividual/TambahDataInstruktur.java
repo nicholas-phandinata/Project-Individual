@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,7 +43,6 @@ public class TambahDataInstruktur extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         tambahInstruktur();
-        onBackPressed();
     }
 
     private void tambahInstruktur() {
@@ -77,6 +77,9 @@ public class TambahDataInstruktur extends AppCompatActivity implements View.OnCl
             protected void onPostExecute(String message) {
                 super.onPostExecute(message);
                 loading.dismiss();
+                Intent intent = new Intent(TambahDataInstruktur.this, MainActivity.class);
+                intent.putExtra("KeyName", "instruktur");
+                startActivity(intent);
             }
         }
         TambahInstructor tn = new TambahInstructor();

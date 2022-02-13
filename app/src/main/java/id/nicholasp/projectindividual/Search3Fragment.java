@@ -45,7 +45,7 @@ public class Search3Fragment extends Fragment implements MainActivity.OnBackPres
     private int spinner_value, spinner_value2;
     private DatePickerDialog datePickerDialog;
     private DatePickerDialog datePickerDialog2;
-    String url = "http://192.168.1.7/inixindo/search/tr_search_id_kelas.php";
+    String url = "http://192.168.1.103/inixindo/search/tr_search_id_kelas.php";
 
 
     public Search3Fragment() {

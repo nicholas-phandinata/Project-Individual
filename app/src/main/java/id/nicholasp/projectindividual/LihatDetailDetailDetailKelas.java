@@ -113,68 +113,6 @@ public class LihatDetailDetailDetailKelas extends AppCompatActivity {
         ddk.execute();
     }
 
-//    private void updateInstruktur() {
-//        final String nama_ins = edit_nama_ins.getText().toString().trim();
-//        final String email_ins = edit_email_ins.getText().toString().trim();
-//        final String hp_ins = edit_hp_ins.getText().toString().trim();
-//
-//        class UpdateInstruktur extends AsyncTask<Void, Void, String> {
-//            ProgressDialog loading;
-//
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//                loading = ProgressDialog.show(LihatDetailInstruktur.this,
-//                        "Updating Data...", "Harap menunggu...",
-//                        false, false);
-//            }
-//
-//            @Override
-//            protected String doInBackground(Void... params) {
-//                HashMap<String, String> hashMap = new HashMap<>();
-//                hashMap.put(Konfigurasi.KEY_INS_ID, id);
-//                hashMap.put(Konfigurasi.KEY_INS_NAMA, nama_ins);
-//                hashMap.put(Konfigurasi.KEY_INS_EMAIL, email_ins);
-//                hashMap.put(Konfigurasi.KEY_INS_HP, hp_ins);
-//
-//                HttpHandler handler = new HttpHandler();
-//                String result = handler.sendPostRequest(Konfigurasi.URL_UPDATE_INS, hashMap);
-//                return result;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(String message) {
-//                super.onPostExecute(message);
-//                loading.dismiss();
-//                displayDetailData(message);
-//            }
-//        }
-//
-//        UpdateInstruktur ue = new UpdateInstruktur();
-//        ue.execute();
-//
-//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LihatDetailInstruktur.this);
-//        alertDialogBuilder.setMessage("Update lagi?");
-//
-//        alertDialogBuilder.setPositiveButton("Ya",
-//                new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                    }
-//                });
-//
-//        alertDialogBuilder.setNegativeButton("Tidak",
-//                new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        //startActivity(new Intent(LihatDetailInstruktur.this, InstrukturFragment.class));
-//                    }
-//                });
-//
-//        AlertDialog alertDialog = alertDialogBuilder.create();
-//        alertDialog.show();
-//    }
-
     private void getJSON() {
         class GetJSON extends AsyncTask<Void, Void, String> { //inner class
             ProgressDialog loading;

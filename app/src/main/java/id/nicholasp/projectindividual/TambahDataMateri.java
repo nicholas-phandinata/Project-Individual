@@ -3,6 +3,7 @@ package id.nicholasp.projectindividual;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,7 +32,6 @@ public class TambahDataMateri extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         tambahMateri();
-        onBackPressed();
     }
 
     private void tambahMateri() {
@@ -66,6 +66,9 @@ public class TambahDataMateri extends AppCompatActivity implements View.OnClickL
         }
         TambahMateri tm = new TambahMateri();
         tm.execute();
+        Intent intent = new Intent(TambahDataMateri.this, MainActivity.class);
+        intent.putExtra("KeyName", "materi");
+        startActivity(intent);
     }
 
 

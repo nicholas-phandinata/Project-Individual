@@ -117,11 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        // default fragment dibuka pertama kali
-//        getSupportActionBar().setTitle("Home Fragment");
-//        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
-//        binding.navView.setCheckedItem(R.id.nav_home);
-
         // membuka drawer
         toggle = new ActionBarDrawerToggle(this, binding.drawer, binding.toolbar,
                 R.string.open, R.string.close);

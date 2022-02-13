@@ -27,8 +27,8 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
     Button btn_tambah_kelas;
     Spinner spn_id_ins, spn_id_mat;
     private int spinner_value, spinner_value2;
-    String url = "http://192.168.1.8/inixindo/kelas/tr_add_kelas_mod.php?nama_ins=";
-    String url2 = "http://192.168.1.8/inixindo/kelas/tr_add_kelas_mod2.php?nama_mat=";
+    String url = "http://192.168.1.103/inixindo/kelas/tr_add_kelas_mod.php?nama_ins=";
+    String url2 = "http://192.168.1.103/inixindo/kelas/tr_add_kelas_mod2.php?nama_mat=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

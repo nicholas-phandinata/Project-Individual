@@ -102,6 +102,9 @@ public class LihatDetailMateri extends AppCompatActivity {
                 super.onPostExecute(message);
                 loading.dismiss();
                 displayDetailData(message);
+                Intent intent = new Intent(LihatDetailMateri.this, MainActivity.class);
+                intent.putExtra("KeyName", "materi");
+                startActivity(intent);
             }
         }
         DeleteMateri dm = new DeleteMateri();
@@ -158,7 +161,9 @@ public class LihatDetailMateri extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //startActivity(new Intent(LihatDetailInstruktur.this, InstrukturFragment.class));
+                        Intent intent = new Intent(LihatDetailMateri.this, MainActivity.class);
+                        intent.putExtra("KeyName", "materi");
+                        startActivity(intent);
                     }
                 });
 

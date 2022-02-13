@@ -104,6 +104,9 @@ public class LihatDetailInstruktur extends AppCompatActivity {
                 super.onPostExecute(message);
                 loading.dismiss();
                 displayDetailData(message);
+                Intent intent = new Intent(LihatDetailInstruktur.this, MainActivity.class);
+                intent.putExtra("KeyName", "instruktur");
+                startActivity(intent);
             }
         }
         DeleteInstruktur de = new DeleteInstruktur();
@@ -164,7 +167,9 @@ public class LihatDetailInstruktur extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //startActivity(new Intent(LihatDetailInstruktur.this, InstrukturFragment.class));
+                        Intent intent = new Intent(LihatDetailInstruktur.this, MainActivity.class);
+                        intent.putExtra("KeyName", "instruktur");
+                        startActivity(intent);
                     }
                 });
 
