@@ -2,6 +2,7 @@ package id.nicholasp.projectindividual;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -34,11 +35,17 @@ public class LihatDetailDetailKelas extends AppCompatActivity
     private ListView list_view;
     private String JSON_STRING;
     FloatingActionButton btn_delete_dt_kls;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lihat_detail_detail_kelas);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //penanganan list view
         list_view = findViewById(R.id.list_view_detail_detail_kelas);
@@ -214,5 +221,10 @@ public class LihatDetailDetailKelas extends AppCompatActivity
         String dtKlsId = map.get(Konfigurasi.TAG_JSON_DT_KLS_ID_DETAIL_KLS).toString();
         myIntent.putExtra("id_dt_kls", dtKlsId);
         startActivity(myIntent);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

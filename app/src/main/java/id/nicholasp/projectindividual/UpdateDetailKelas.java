@@ -1,6 +1,7 @@
 package id.nicholasp.projectindividual;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -30,11 +31,17 @@ public class UpdateDetailKelas extends AppCompatActivity implements View.OnClick
     Spinner spn_id_kls, spn_id_pst;
     private int spn1, spn2;
     String url = "http://192.168.1.103/inixindo/detail_kelas/tr_dropdown_ins_kelas.php";
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_detail_kelas);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         edit_id_dt_kls = findViewById(R.id.edit_id_dt_kls);
         spn_id_kls = findViewById(R.id.spinner1);
@@ -295,5 +302,10 @@ public class UpdateDetailKelas extends AppCompatActivity implements View.OnClick
 
         UpdateConfKelas uck = new UpdateConfKelas();
         uck.execute();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

@@ -2,6 +2,7 @@ package id.nicholasp.projectindividual;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -24,11 +25,17 @@ public class LihatDetailKelas extends AppCompatActivity {
     String id;
     Button button_update_kelas;
     Button button_delete_kelas;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lihat_detail_kelas);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         edit_id_kls = findViewById(R.id.edit_id_kls);
         edit_mulai_kelas = findViewById(R.id.edit_mulai_kelas);
@@ -170,7 +177,7 @@ public class LihatDetailKelas extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }

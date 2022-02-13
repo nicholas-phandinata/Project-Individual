@@ -1,6 +1,7 @@
 package id.nicholasp.projectindividual;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -22,16 +23,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TambahDataDetailKelas extends AppCompatActivity implements View.OnClickListener {
-    String JSON_STRING1, slct_spin1, JSON_STRING2, slct_spin2, id_ins, id_mat, n1, n2, j1, j2;
+    String JSON_STRING1, JSON_STRING2;
     Button btn_tambah_detail_kelas;
     Spinner spn1, spn2;
     private int spinner_value, spinner_value2;
+    private Toolbar toolbar;
     String url = "http://192.168.1.103/inixindo/detail_kelas/tr_dropdown_ins_kelas.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_data_detail_kelas);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         spn1 = findViewById(R.id.spinnerdk1);
         spn2 = findViewById(R.id.spinnerdk2);
@@ -233,5 +240,10 @@ public class TambahDataDetailKelas extends AppCompatActivity implements View.OnC
         }
         TambahDetailKelas tdk = new TambahDetailKelas();
         tdk.execute();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

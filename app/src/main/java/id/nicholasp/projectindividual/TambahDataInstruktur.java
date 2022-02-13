@@ -32,6 +32,8 @@ public class TambahDataInstruktur extends AppCompatActivity implements View.OnCl
         edit_hp_ins = findViewById(R.id.edit_hp_ins);
         btn_tambah_ins = findViewById(R.id.btn_tambah_ins);
 
+        edit_nama_ins.requestFocus();
+
         btn_tambah_ins.setOnClickListener(this);
 
         toolbarTambahKelas = findViewById(R.id.toolbartambahkelas);

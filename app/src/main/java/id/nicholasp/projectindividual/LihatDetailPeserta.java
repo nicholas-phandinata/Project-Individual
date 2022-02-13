@@ -2,6 +2,7 @@ package id.nicholasp.projectindividual;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -24,11 +25,17 @@ public class LihatDetailPeserta extends AppCompatActivity {
     String id;
     Button button_update_peserta;
     Button button_delete_peserta;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lihat_detail_peserta);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         edit_id_pst = findViewById(R.id.edit_id_pst);
         edit_nama_pst = findViewById(R.id.edit_nama_pst);
@@ -234,7 +241,7 @@ public class LihatDetailPeserta extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }

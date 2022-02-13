@@ -1,7 +1,10 @@
 package id.nicholasp.projectindividual;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,31 +23,127 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class TambahDataKelas extends AppCompatActivity implements View.OnClickListener {
-    String JSON_STRING1, slct_spin1, JSON_STRING2, slct_spin2, id_ins, id_mat, n1, n2, j1, j2;
-    EditText edit_mulai_kelas, edit_akhir_kelas;
+    String JSON_STRING1, JSON_STRING2;
+    Button edit_mulai_kelas, edit_akhir_kelas;
     Button btn_tambah_kelas;
     Spinner spn_id_ins, spn_id_mat;
     private int spinner_value, spinner_value2;
-    String url = "http://192.168.1.103/inixindo/kelas/tr_add_kelas_mod.php?nama_ins=";
-    String url2 = "http://192.168.1.103/inixindo/kelas/tr_add_kelas_mod2.php?nama_mat=";
+    private DatePickerDialog datePickerDialog;
+    private DatePickerDialog datePickerDialog2;
+    private Toolbar toolbar;
+
+    public void openDatePicker()
+    {
+        datePickerDialog.show();
+    }
+    public void openDatePicker2()
+    {
+        datePickerDialog2.show();
+    }
+    private String getTodaysDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+    private String makeDateString(int day, int month, int year)
+    {
+        return year + "-" + month + "-" + day;
+    }
+    private void initDatePicker()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                edit_mulai_kelas.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+    }
+
+    private void initDatePicker2()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                edit_akhir_kelas.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog2 = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_data_kelas);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         spn_id_ins = findViewById(R.id.spinner1);
         spn_id_mat = findViewById(R.id.spinner2);
+
+        initDatePicker();
+        initDatePicker2();
 
         edit_mulai_kelas = findViewById(R.id.edit_mulai_kelas);
         edit_akhir_kelas = findViewById(R.id.edit_akhir_kelas);
         btn_tambah_kelas = findViewById(R.id.btn_tambah_kelas);
 
-        btn_tambah_kelas.setOnClickListener(this);
+        edit_mulai_kelas.setText(getTodaysDate());
+        edit_akhir_kelas.setText(getTodaysDate());
 
+        btn_tambah_kelas.setOnClickListener(this);
+        edit_mulai_kelas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePicker();
+            }
+        });
+
+        edit_akhir_kelas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePicker2();
+            }
+        });
         getJSONins();
         getJSONmat();
     }
@@ -242,5 +342,10 @@ public class TambahDataKelas extends AppCompatActivity implements View.OnClickLi
         }
         TambahKelas tk = new TambahKelas();
         tk.execute();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

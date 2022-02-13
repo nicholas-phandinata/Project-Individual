@@ -1,6 +1,7 @@
 package id.nicholasp.projectindividual;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,17 +17,25 @@ import java.util.HashMap;
 public class TambahDataPeserta extends AppCompatActivity implements View.OnClickListener{
     EditText edit_nama_pst, edit_email_pst, edit_hp_pst, edit_ins_pst;
     Button btn_tambah_ins;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_data_peserta);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         edit_nama_pst = findViewById(R.id.edit_nama_pst);
         edit_email_pst = findViewById(R.id.edit_email_pst);
         edit_hp_pst = findViewById(R.id.edit_hp_pst);
         edit_ins_pst = findViewById(R.id.edit_ins_pst);
         btn_tambah_ins = findViewById(R.id.btn_tambah_ins);
+
+        edit_nama_pst.requestFocus();
 
         btn_tambah_ins.setOnClickListener(this);
     }
@@ -83,7 +92,11 @@ public class TambahDataPeserta extends AppCompatActivity implements View.OnClick
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        onBackPressed();
         return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

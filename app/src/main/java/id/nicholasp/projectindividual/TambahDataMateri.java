@@ -1,6 +1,7 @@
 package id.nicholasp.projectindividual;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 public class TambahDataMateri extends AppCompatActivity implements View.OnClickListener {
     EditText edit_materi;
     Button btn_tambah_mat;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +25,14 @@ public class TambahDataMateri extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_tambah_data_materi);
 
         edit_materi = findViewById(R.id.edit_nama_mat);
-
+        edit_materi.requestFocus();
         btn_tambah_mat = findViewById(R.id.btn_tambah_mat);
 
         btn_tambah_mat.setOnClickListener(this);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override
@@ -74,7 +80,11 @@ public class TambahDataMateri extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        onBackPressed();
         return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

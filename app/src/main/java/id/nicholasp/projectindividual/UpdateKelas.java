@@ -1,8 +1,10 @@
 package id.nicholasp.projectindividual;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,19 +24,103 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class UpdateKelas extends AppCompatActivity implements View.OnClickListener {
-    EditText edit_id_kls, edit_mulai_kelas, edit_akhir_kelas;
+    EditText edit_id_kls;
+    Button edit_mulai_kelas, edit_akhir_kelas;
     String id, JSON_STRING1, JSON_STRING2, n_ins, n_mat;
     Button button_update_conf_kelas;
     Spinner spn_id_ins, spn_id_mat;
     private int spinner_value, spinner_value2;
+    private DatePickerDialog datePickerDialog;
+    private DatePickerDialog datePickerDialog2;
+    private Toolbar toolbar;
+
+    public void openDatePicker()
+    {
+        datePickerDialog.show();
+    }
+    public void openDatePicker2()
+    {
+        datePickerDialog2.show();
+    }
+    private String getTodaysDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+    private String makeDateString(int day, int month, int year)
+    {
+        return year + "-" + month + "-" + day;
+    }
+    private void initDatePicker()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                edit_mulai_kelas.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+    }
+
+    private void initDatePicker2()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                edit_akhir_kelas.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog2 = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_kelas);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        initDatePicker();
+        initDatePicker2();
 
         edit_id_kls = findViewById(R.id.edit_id_kls);
         edit_mulai_kelas = findViewById(R.id.edit_mulai_kelas);
@@ -51,7 +138,19 @@ public class UpdateKelas extends AppCompatActivity implements View.OnClickListen
         getJSONmat();
 
         button_update_conf_kelas.setOnClickListener(this);
+        edit_mulai_kelas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePicker();
+            }
+        });
 
+        edit_akhir_kelas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePicker2();
+            }
+        });
     }
 
     private void getJSON() {
@@ -303,5 +402,10 @@ public class UpdateKelas extends AppCompatActivity implements View.OnClickListen
 
         UpdateConfKelas uck = new UpdateConfKelas();
         uck.execute();
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
