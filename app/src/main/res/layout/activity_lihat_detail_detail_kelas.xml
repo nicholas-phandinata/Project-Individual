@@ -87,11 +87,12 @@
                         android:layout_gravity="bottom|end"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="24dp"
+                        android:backgroundTint="#FF0000"
                         android:clickable="true"
                         android:focusable="true"
                         app:fabSize="normal"
-                        app:tint="#ffffff"
-                        app:srcCompat="@android:drawable/ic_input_delete" />
+                        app:srcCompat="@android:drawable/ic_input_delete"
+                        app:tint="#ffffff" />
                 </FrameLayout>
             </LinearLayout>
         </LinearLayout>

@@ -191,7 +191,8 @@
                     android:layout_marginTop="50dp"
                     android:layout_weight="1"
                     android:paddingLeft="10dp"
-                    android:text="Delete" />
+                    android:text="Delete"
+                    android:backgroundTint="#FF5959"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
