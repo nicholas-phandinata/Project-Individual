@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
@@ -44,7 +45,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 String lok = String.valueOf(lokasi.getText());
                 String dom = String.valueOf(domisili.getText());
 
+                if (lok.matches("")) {
+                    Toast.makeText(getContext(), "Mohon isi lokasi terakhir yang dikunjungi!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                else if (dom.matches("")) {
+                    Toast.makeText(getContext(), "Mohon isi domisili!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 String spinner_val = spinner.getSelectedItem().toString();
+
+                if (spinner_val.matches("")) {
+                    Toast.makeText(getContext(), "Mohon memilih kondisi badan saat ini!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(ya.isChecked()){
                     res = "Ya";
